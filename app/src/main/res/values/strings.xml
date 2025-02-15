@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">HomeTraining</string>
+    <string name="hello_blank_fragment">Стартовый фрагмент</string>
+</resources>
