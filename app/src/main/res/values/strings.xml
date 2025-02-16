@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">HomeTraining</string>
-    <string name="hello_blank_fragment">Стартовый фрагмент</string>
     <string name="navigation_label_trainings">Тренировкa</string>
     <string name="navigation_label_search">Поиск</string>
     <string name="navigation_label_record">Отчет</string>
