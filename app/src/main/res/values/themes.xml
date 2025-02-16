@@ -5,5 +5,9 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.HomeTraining" parent="Base.Theme.HomeTraining" />
+    <style name="Theme.HomeTraining" parent="Base.Theme.HomeTraining">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/white</item>
+    </style>>
 </resources>
