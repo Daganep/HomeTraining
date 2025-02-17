@@ -10,24 +10,24 @@ import com.openkin.hometraining.ui.home.list.TrainingsDelegate
 import com.openkin.hometraining.ui.home.list.TrainingsViewHolder
 
 internal class StatsDelegate: TrainingsDelegate<ItemTrainingsStatsBinding,
-    StatsDelegate.StatsAdapterType> {
+    StatsDelegate.StatsType> {
 
-    override fun isRelative(item: TrainingsAdapterType) = item is StatsAdapterType
+    override fun isRelative(item: TrainingsAdapterType) = item is StatsType
 
     override fun getLayoutId() = R.layout.item_trainings_stats
 
     override fun getViewHolder(
         parent: ViewGroup
-    ): TrainingsViewHolder<ItemTrainingsStatsBinding, StatsAdapterType> =
+    ): TrainingsViewHolder<ItemTrainingsStatsBinding, StatsType> =
         StatsViewHolder(createBinding(parent, ItemTrainingsStatsBinding::inflate))
 
-    override fun getDiffUtil(): DiffUtil.ItemCallback<StatsAdapterType> = diffUtil
+    override fun getDiffUtil(): DiffUtil.ItemCallback<StatsType> = diffUtil
 
-    private val diffUtil = object : DiffUtil.ItemCallback<StatsAdapterType>() {
+    private val diffUtil = object : DiffUtil.ItemCallback<StatsType>() {
 
-        override fun areItemsTheSame(oldItem: StatsAdapterType, newItem: StatsAdapterType) = true
+        override fun areItemsTheSame(oldItem: StatsType, newItem: StatsType) = true
 
-        override fun areContentsTheSame(oldItem: StatsAdapterType, newItem: StatsAdapterType) =
+        override fun areContentsTheSame(oldItem: StatsType, newItem: StatsType) =
             oldItem.trainingsNumber == newItem.trainingsNumber
             && oldItem.caloriesNumber == newItem.caloriesNumber
             && oldItem.minutesNumber == newItem.minutesNumber
@@ -35,18 +35,19 @@ internal class StatsDelegate: TrainingsDelegate<ItemTrainingsStatsBinding,
 
     inner class StatsViewHolder(
         binding: ItemTrainingsStatsBinding
-    ) : TrainingsViewHolder<ItemTrainingsStatsBinding, StatsAdapterType>(binding) {
+    ) : TrainingsViewHolder<ItemTrainingsStatsBinding, StatsType>(binding) {
 
-        override fun onBind(item: StatsAdapterType) {
+        override fun onBind(item: StatsType) {
             with(binding) {
                 trainingsNumber.text = item.trainingsNumber.toString()
                 caloriesNumber.text = item.caloriesNumber.toString()
                 minutesNumber.text = item.minutesNumber.toString()
+                root.setOnClickListener { item.onStatsClicked?.invoke() }
             }
         }
     }
 
-    data class StatsAdapterType(
+    data class StatsType(
         var trainingsNumber: Int,
         var caloriesNumber: Int,
         var minutesNumber: Int,

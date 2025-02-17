@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/gray_super_light"
     tools:context=".MainActivity">
 
     <TextView
@@ -15,9 +15,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constrainedWidth="true"
-        android:layout_marginStart="16dp"
+        android:layout_margin="16dp"
         android:text="@string/navigation_label_trainings"
-        android:textSize="36sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
             android:layout_height="24dp"
             android:contentDescription="@string/navigation_label_trainings"
             android:src="@drawable/icon_trainings"
-            app:tint="@color/darkGray"/>
+            app:tint="@color/gray_dark"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
             android:layout_marginTop="4dp"
             android:text="@string/navigation_label_trainings"
             android:textSize="11sp"
-            android:textColor="@color/darkGray"/>
+            android:textColor="@color/gray_dark"/>
     </LinearLayout>
 
     <LinearLayout
@@ -95,7 +95,7 @@
             android:layout_height="24dp"
             android:contentDescription="@string/navigation_label_search"
             android:src="@drawable/icon_search"
-            app:tint="@color/darkGray"/>
+            app:tint="@color/gray_dark"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
             android:layout_marginTop="4dp"
             android:text="@string/navigation_label_search"
             android:textSize="11sp"
-            android:textColor="@color/darkGray"/>
+            android:textColor="@color/gray_dark"/>
     </LinearLayout>
 
     <LinearLayout
@@ -122,7 +122,7 @@
             android:layout_height="24dp"
             android:contentDescription="@string/navigation_label_record"
             android:src="@drawable/icon_record"
-            app:tint="@color/darkGray"/>
+            app:tint="@color/gray_dark"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -130,7 +130,7 @@
             android:layout_marginTop="4dp"
             android:text="@string/navigation_label_record"
             android:textSize="11sp"
-            android:textColor="@color/darkGray"/>
+            android:textColor="@color/gray_dark"/>
     </LinearLayout>
 
     <LinearLayout
@@ -150,7 +150,7 @@
             android:layout_height="24dp"
             android:contentDescription="@string/navigation_label_settings"
             android:src="@drawable/icon_settings"
-            app:tint="@color/darkGray"/>
+            app:tint="@color/gray_dark"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -158,7 +158,7 @@
             android:layout_marginTop="4dp"
             android:text="@string/navigation_label_settings"
             android:textSize="11sp"
-            android:textColor="@color/darkGray"/>
+            android:textColor="@color/gray_dark"/>
     </LinearLayout>
 
     <androidx.constraintlayout.widget.Group

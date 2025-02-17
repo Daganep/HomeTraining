@@ -16,8 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/calories_label"
         app:layout_constraintTop_toBottomOf="@id/trainings_number"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        tools:text="тренировки"/>
+        app:layout_constraintHorizontal_chainStyle="spread_inside"/>
 
     <TextView
         android:id="@+id/calories_label"
@@ -27,8 +26,7 @@
         android:text="ккал"
         app:layout_constraintStart_toEndOf="@id/trainings_label"
         app:layout_constraintEnd_toStartOf="@id/minutes_label"
-        app:layout_constraintTop_toBottomOf="@id/calories_number"
-        tools:text="ккал"/>
+        app:layout_constraintTop_toBottomOf="@id/calories_number"/>
 
     <TextView
         android:id="@+id/minutes_label"
@@ -39,8 +37,7 @@
         android:text="минут"
         app:layout_constraintStart_toEndOf="@id/calories_label"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/minutes_number"
-        tools:text="минут"/>
+        app:layout_constraintTop_toBottomOf="@id/minutes_number"/>
 
     <TextView
         android:id="@+id/trainings_number"
@@ -48,7 +45,6 @@
         android:layout_height="wrap_content"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:text="32"
         app:layout_constraintStart_toStartOf="@id/trainings_label"
         app:layout_constraintEnd_toEndOf="@id/trainings_label"
         app:layout_constraintTop_toTopOf="parent"
@@ -60,7 +56,6 @@
         android:layout_height="wrap_content"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:text="6808"
         app:layout_constraintStart_toStartOf="@id/calories_label"
         app:layout_constraintEnd_toEndOf="@id/calories_label"
         app:layout_constraintTop_toTopOf="parent"
@@ -72,7 +67,6 @@
         android:layout_height="wrap_content"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:text="393"
         app:layout_constraintStart_toStartOf="@id/minutes_label"
         app:layout_constraintEnd_toEndOf="@id/minutes_label"
         app:layout_constraintTop_toTopOf="parent"
