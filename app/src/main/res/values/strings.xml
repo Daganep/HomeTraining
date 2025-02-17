@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">HomeTraining</string>
-    <string name="navigation_label_trainings">Тренировки дома</string>
+    <string name="navigation_label_trainings">Тренировки</string>
     <string name="navigation_label_search">Поиск</string>
     <string name="navigation_label_record">Отчет</string>
     <string name="navigation_label_settings">Настройки</string>
+
+    <string name="screen_title_trainings">Тренировки дома</string>
+
+    <string name="content_description_training_program">Изображение программы тренировок</string>
+    <string name="content_description_training_level">Уровень сложности программы</string>
 </resources>

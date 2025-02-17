@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
             .beginTransaction()
             .add(R.id.main_container, HomeFragment())
             .commit()
-        binding.bottomNavigation.isVisible = false
+        //binding.bottomNavigation.isVisible = false
         binding.bottomNavTrainings.setOnClickListener {
             supportFragmentManager
                 .beginTransaction()
