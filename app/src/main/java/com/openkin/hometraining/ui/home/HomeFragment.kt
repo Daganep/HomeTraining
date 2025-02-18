@@ -9,6 +9,7 @@ import com.openkin.hometraining.ui.home.list.delegates.CategoriesDelegate
 import com.openkin.hometraining.ui.home.list.delegates.CategoryTitleDelegate
 import com.openkin.hometraining.ui.home.list.delegates.GoalsDelegate
 import com.openkin.hometraining.ui.home.list.delegates.GroupDelegate
+import com.openkin.hometraining.ui.home.list.delegates.ProgramsDelegate
 import com.openkin.hometraining.ui.home.list.delegates.StatsDelegate
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -40,6 +41,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             CategoryTitleDelegate.CategoryTitleType(
                 title = "ПРОГРАММА кек пек",
                 titleLevel = 1,
+            ),
+            ProgramsDelegate.ProgramsType(
+                fullBodyProgramName = "",
+                downBodyProgramName = "",
+                onBeginClicked = null
             ),
             CategoriesDelegate.CategoriesType(
                 ::openHistory,
@@ -108,6 +114,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         StatsDelegate(),
         GoalsDelegate(),
         CategoryTitleDelegate(),
+        ProgramsDelegate(),
         CategoriesDelegate(),
         GroupDelegate(),
     )
