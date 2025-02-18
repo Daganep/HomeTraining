@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import com.openkin.hometraining.BaseFragment
 import com.openkin.hometraining.databinding.FragmentHomeBinding
+import com.openkin.hometraining.ui.home.list.delegates.CategoriesDelegate
 import com.openkin.hometraining.ui.home.list.delegates.CategoryTitleDelegate
 import com.openkin.hometraining.ui.home.list.delegates.GoalsDelegate
 import com.openkin.hometraining.ui.home.list.delegates.GroupDelegate
@@ -39,6 +40,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             CategoryTitleDelegate.CategoryTitleType(
                 title = "ПРОГРАММА кек пек",
                 titleLevel = 1,
+            ),
+            CategoriesDelegate.CategoriesType(
+                ::openHistory,
+                ::openHistory,
+                ::openHistory,
             ),
             GroupDelegate.GroupType(
                 programLevel = 1,
@@ -102,6 +108,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         StatsDelegate(),
         GoalsDelegate(),
         CategoryTitleDelegate(),
+        CategoriesDelegate(),
         GroupDelegate(),
     )
 }

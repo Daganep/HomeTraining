@@ -53,7 +53,7 @@
     <LinearLayout
         android:id="@+id/bottom_nav_trainings"
         android:layout_width="wrap_content"
-        android:layout_height="56dp"
+        android:layout_height="60dp"
         android:layout_marginStart="@dimen/default_horizontal_margin"
         android:orientation="vertical"
         android:gravity="center"
@@ -82,7 +82,7 @@
     <LinearLayout
         android:id="@+id/bottom_nav_search"
         android:layout_width="wrap_content"
-        android:layout_height="56dp"
+        android:layout_height="60dp"
         android:orientation="vertical"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -109,7 +109,7 @@
     <LinearLayout
         android:id="@+id/bottom_nav_record"
         android:layout_width="wrap_content"
-        android:layout_height="56dp"
+        android:layout_height="60dp"
         android:orientation="vertical"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -136,7 +136,7 @@
     <LinearLayout
         android:id="@+id/bottom_nav_settings"
         android:layout_width="wrap_content"
-        android:layout_height="56dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="@dimen/default_horizontal_margin"
         android:orientation="vertical"
         android:gravity="center"
