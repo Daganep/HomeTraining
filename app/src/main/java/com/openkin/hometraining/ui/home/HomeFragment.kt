@@ -109,12 +109,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private fun observeDataState() {
         viewModel.homeScreenData.observe(viewLifecycleOwner) { state ->
             when(state) {
-                is StatsLoaded -> { }
-                is GoalsLoaded -> { }
-                is ProgramsLoaded -> { }
-                is GroupsLoaded -> { }
-                is LoadingState -> { }
-                is ErrorState -> { }
+                is StatsLoaded -> { Log.d("MyFilter", state.statsData.toString()) }
+                is GoalsLoaded -> { Log.d("MyFilter", state.goalsData.toString() ) }
+                is ProgramsLoaded -> { Log.d("MyFilter", state.programsData.toString()) }
+                is GroupsLoaded -> { Log.d("MyFilter", state.groupsData.toString()) }
+                is LoadingState -> { Log.d("MyFilter", "Loading in progress!") }
+                is ErrorState -> { Log.e("Errors", state.message) }
             }
         }
     }

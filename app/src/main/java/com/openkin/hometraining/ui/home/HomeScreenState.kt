@@ -9,13 +9,13 @@ sealed interface HomeScreenState {
 
     data class StatsLoaded(val statsData: HomeStats) : HomeScreenState
 
-    data class GoalsLoaded(val statsData: Goals) : HomeScreenState
+    data class GoalsLoaded(val goalsData: Goals) : HomeScreenState
 
-    data class ProgramsLoaded(val statsData: List<ProgramSevenFour>) : HomeScreenState
+    data class ProgramsLoaded(val programsData: List<ProgramSevenFour>) : HomeScreenState
 
-    data class GroupsLoaded(val statsData: List<MuscleGroup>) : HomeScreenState
+    data class GroupsLoaded(val groupsData: List<MuscleGroup>) : HomeScreenState
 
     data object LoadingState : HomeScreenState
 
-    data object ErrorState : HomeScreenState
+    data class ErrorState(val message: String) : HomeScreenState
 }
