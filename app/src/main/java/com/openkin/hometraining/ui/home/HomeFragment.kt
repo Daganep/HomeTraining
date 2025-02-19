@@ -11,9 +11,11 @@ import com.openkin.hometraining.ui.home.list.delegates.GoalsDelegate
 import com.openkin.hometraining.ui.home.list.delegates.GroupDelegate
 import com.openkin.hometraining.ui.home.list.delegates.ProgramsDelegate
 import com.openkin.hometraining.ui.home.list.delegates.StatsDelegate
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
+    private val viewModel by viewModel<HomeViewModel>()
     private val trainingsAdapter = TrainingsAdapter(getDelegates())
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
