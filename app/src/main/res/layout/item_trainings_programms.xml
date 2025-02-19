@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/margin_medium"
+    android:layout_marginTop="@dimen/margin_small"
     android:paddingHorizontal="@dimen/default_horizontal_padding"
     android:clipToPadding="false"
     android:scrollbars="none">
@@ -16,13 +16,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/program_full_body"
-            android:layout_width="300dp"
-            android:layout_height="225dp">
+            android:layout_width="330dp"
+            android:layout_height="270dp">
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:src="@drawable/image_program_full_7x4"
+                android:scaleType="fitXY"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -105,14 +106,15 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/program_down_body"
-            android:layout_width="300dp"
-            android:layout_height="225dp"
+            android:layout_width="330dp"
+            android:layout_height="270dp"
             android:layout_marginStart="@dimen/margin_medium">
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/image_program_full_7x4"
+                android:src="@drawable/image_program_down_7x4"
+                android:scaleType="fitXY"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
