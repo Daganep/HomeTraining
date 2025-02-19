@@ -3,9 +3,15 @@ package com.openkin.hometraining.ui.home
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.openkin.hometraining.ui.home.HomeScreenState.*
 import com.openkin.hometraining.BaseFragment
 import com.openkin.hometraining.databinding.FragmentHomeBinding
+import com.openkin.hometraining.domain.model.Goals
+import com.openkin.hometraining.domain.model.HomeStats
+import com.openkin.hometraining.domain.model.MuscleGroup
+import com.openkin.hometraining.domain.model.ProgramSevenFour
+import com.openkin.hometraining.ui.home.list.TrainingsAdapterType
 import com.openkin.hometraining.ui.home.list.delegates.CategoriesDelegate
 import com.openkin.hometraining.ui.home.list.delegates.CategoryTitleDelegate
 import com.openkin.hometraining.ui.home.list.delegates.GoalsDelegate
@@ -18,6 +24,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private val viewModel by viewModel<HomeViewModel>()
     private val trainingsAdapter = TrainingsAdapter(getDelegates())
+    private val dataList = mutableListOf<TrainingsAdapterType>()
+    private var stats = StatsDelegate.StatsType(0, 0,0)
+    private var goals = GoalsDelegate.GoalsType(0, 0, listOf(), 0)
+    private val programs = mutableListOf<ProgramsDelegate.ProgramsType>()
+    private val groups = mutableListOf<GroupDelegate.GroupType>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,104 +38,81 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun initUi() {
         binding?.homeScreenRecycler?.adapter = trainingsAdapter
-        trainingsAdapter.setData(listOf(
-            StatsDelegate.StatsType(
-                trainingsNumber = 32,
-                caloriesNumber = 6808,
-                minutesNumber = 303,
-                onStatsClicked = ::openHistory
-            ),
-            GoalsDelegate.GoalsType(
-                goalsDone = 0,
-                goalsWanted = 5,
-                currentWeek =  listOf(),
-                currentDay = 3,
-                onGoalsEdit = ::openEditGoals,
-                onGoalsClicked = ::openHistory,
-            ),
-            CategoryTitleDelegate.CategoryTitleType(
-                title = "ПРОГРАММА кек пек",
-                titleLevel = 1,
-            ),
-            ProgramsDelegate.ProgramsType(
-                fullBodyProgramName = "",
-                downBodyProgramName = "",
-                onBeginClicked = null
-            ),
-            CategoriesDelegate.CategoriesType(
-                ::openHistory,
-                ::openHistory,
-                ::openHistory,
-            ),
-            GroupDelegate.GroupType(
-                programLevel = 1,
-                programName = "Пресс новичок",
-                programDescription = "20 мин · 16 упражнений",
-                lastDate = "Последний раз: окт.23.2024",
-                programImage = "press beginner",
-                onGroupClicked = ::openHistory
-            ),
-            GroupDelegate.GroupType(
-                programLevel = 1,
-                programName = "Руки новичок",
-                programDescription = "20 мин · 12 упражнений",
-                lastDate = "",
-                programImage = "press beginner"
-            ),
-            GroupDelegate.GroupType(
-                programLevel = 1,
-                programName = "Плечи новичок",
-                programDescription = "15 мин · 10 упражнений",
-                lastDate = "Последний раз: янв.15.2025",
-                programImage = "press beginner"
-            ),
-            CategoryTitleDelegate.CategoryTitleType(
-                title = "Продолжающий",
-                titleLevel = 1,
-            ),
-            GroupDelegate.GroupType(
-                programLevel = 1,
-                programName = "Пресс новичок",
-                programDescription = "20 мин · 16 упражнений",
-                lastDate = "Последний раз: окт.23.2024",
-                programImage = "press beginner"
-            ),
-            GroupDelegate.GroupType(
-                programLevel = 1,
-                programName = "Руки новичок",
-                programDescription = "20 мин · 12 упражнений",
-                lastDate = "",
-                programImage = "press beginner"
-            ),
-            GroupDelegate.GroupType(
-                programLevel = 1,
-                programName = "Плечи новичок",
-                programDescription = "15 мин · 10 упражнений",
-                lastDate = "Последний раз: янв.15.2025",
-                programImage = "press beginner"
-            ),
-        ))
     }
 
     private fun observeDataState() {
         viewModel.homeScreenData.observe(viewLifecycleOwner) { state ->
             when(state) {
-                is StatsLoaded -> { Log.d("MyFilter", state.statsData.toString()) }
-                is GoalsLoaded -> { Log.d("MyFilter", state.goalsData.toString() ) }
-                is ProgramsLoaded -> { Log.d("MyFilter", state.programsData.toString()) }
-                is GroupsLoaded -> { Log.d("MyFilter", state.groupsData.toString()) }
-                is LoadingState -> { Log.d("MyFilter", "Loading in progress!") }
-                is ErrorState -> { Log.e("Errors", state.message) }
+                is StatsLoaded -> updateStats(state.statsData)
+                is GoalsLoaded -> updateGoals(state.goalsData)
+                is ProgramsLoaded -> updatePrograms(state.programsData)
+                is GroupsLoaded -> updateGroups(state.groupsData)
+                is LoadingState -> Log.d("MyFilter", "Loading in progress!")
+                is ErrorState -> Log.e("Errors", state.message)
             }
         }
     }
 
-    private fun openHistory() {
-        Log.d("MyFilter", "Open history")
+    private fun updateList() {
+        dataList.clear()
+        dataList.add(stats)
+        dataList.add(goals)
+        dataList.add(
+            CategoryTitleDelegate.CategoryTitleType(
+            title = "ПРОГРАММА кек пек",
+            titleLevel = 1,
+        ))
+        dataList.addAll(programs)
+        dataList.add(
+            CategoriesDelegate.CategoriesType(
+                ::clickIndicator,
+                ::clickIndicator,
+                ::clickIndicator,
+            ))
+        dataList.addAll(groups)
+        trainingsAdapter.setData(dataList)
     }
 
-    private fun openEditGoals() {
-        Log.d("MyFilter", "Open edit goals")
+    private fun updateStats(statsData: HomeStats) {
+        Log.d("MyFilter", statsData.toString())
+        stats = StatsDelegate.StatsType(
+            trainingsNumber = statsData.trainingNumber,
+            caloriesNumber = statsData.caloriesNumber,
+            minutesNumber = statsData.trainingsMinutes,
+            onStatsClicked = ::clickIndicator,
+        )
+        updateList()
+    }
+
+    private fun updateGoals(goalsData: Goals) {
+        Log.d("MyFilter", goalsData.toString() )
+        goals = GoalsDelegate.GoalsType(
+            goalsDone = goalsData.goalsDone,
+            goalsWanted = goalsData.goalsWanted,
+            currentWeek = goalsData.currentWeak,
+            currentDay = goalsData.currentDayNumber,
+            onGoalsEdit = ::clickIndicator,
+            onGoalsClicked = ::clickIndicator,
+        )
+        updateList()
+    }
+
+    private fun updatePrograms(programsData: List<ProgramSevenFour>) {
+        Log.d("MyFilter", programsData.toString())
+        programs.clear()
+        //TODO добавлять программы в цикле
+        updateList()
+    }
+
+    private fun updateGroups(groupsData: List<MuscleGroup>) {
+        Log.d("MyFilter", groupsData.toString())
+        programs.clear()
+        //TODO добавлять программы по группам мышц в цикле
+        updateList()
+    }
+
+    private fun clickIndicator() {
+        Toast.makeText(activity, "Clicked", Toast.LENGTH_LONG).show()
     }
 
     private fun getDelegates() = listOf(

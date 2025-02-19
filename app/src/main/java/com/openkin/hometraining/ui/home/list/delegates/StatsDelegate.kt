@@ -51,6 +51,6 @@ internal class StatsDelegate: TrainingsDelegate<ItemTrainingsStatsBinding,
         var trainingsNumber: Int,
         var caloriesNumber: Int,
         var minutesNumber: Int,
-        val onStatsClicked: (() -> Unit)?
+        val onStatsClicked: (() -> Unit)? = null
     ) : TrainingsAdapterType
 }
