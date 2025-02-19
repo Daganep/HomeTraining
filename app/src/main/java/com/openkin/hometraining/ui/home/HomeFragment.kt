@@ -3,6 +3,7 @@ package com.openkin.hometraining.ui.home
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import com.openkin.hometraining.ui.home.HomeScreenState.*
 import com.openkin.hometraining.BaseFragment
 import com.openkin.hometraining.databinding.FragmentHomeBinding
 import com.openkin.hometraining.ui.home.list.delegates.CategoriesDelegate
@@ -21,6 +22,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUi()
+        observeDataState()
     }
 
     private fun initUi() {
@@ -102,6 +104,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 programImage = "press beginner"
             ),
         ))
+    }
+
+    private fun observeDataState() {
+        viewModel.homeScreenData.observe(viewLifecycleOwner) { state ->
+            when(state) {
+                is StatsLoaded -> { }
+                is GoalsLoaded -> { }
+                is ProgramsLoaded -> { }
+                is GroupsLoaded -> { }
+                is LoadingState -> { }
+                is ErrorState -> { }
+            }
+        }
     }
 
     private fun openHistory() {
