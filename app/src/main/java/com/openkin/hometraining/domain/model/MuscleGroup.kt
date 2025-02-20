@@ -5,6 +5,7 @@ data class MuscleGroup(
     val description: String,
     val lastDate: String,
     val level: TrainingLevel,
+    val groupImage: String,
 )
 
 enum class TrainingLevel() {

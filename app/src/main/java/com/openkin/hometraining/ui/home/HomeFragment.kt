@@ -1,11 +1,14 @@
 package com.openkin.hometraining.ui.home
 
+import android.graphics.Bitmap
+import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.openkin.hometraining.ui.home.HomeScreenState.*
 import com.openkin.hometraining.BaseFragment
+import com.openkin.hometraining.R
 import com.openkin.hometraining.databinding.FragmentHomeBinding
 import com.openkin.hometraining.domain.model.Goals
 import com.openkin.hometraining.domain.model.HomeStats
@@ -25,9 +28,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private val viewModel by viewModel<HomeViewModel>()
     private val trainingsAdapter = TrainingsAdapter(getDelegates())
     private val dataList = mutableListOf<TrainingsAdapterType>()
-    private var stats = StatsDelegate.StatsType(0, 0,0)
-    private var goals = GoalsDelegate.GoalsType(0, 0, listOf(), 0)
+
+    //Элементы экрана
+    private var stats = StatsDelegate.StatsType()
+    private var goals = GoalsDelegate.GoalsType()
+    private lateinit var programTitle: CategoryTitleDelegate.CategoryTitleType
     private val programs = mutableListOf<ProgramsDelegate.ProgramsType>()
+    private lateinit var categories: CategoriesDelegate.CategoriesType
     private val groups = mutableListOf<GroupDelegate.GroupType>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,6 +45,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun initUi() {
         binding?.homeScreenRecycler?.adapter = trainingsAdapter
+
+        programTitle = CategoryTitleDelegate.CategoryTitleType(
+            title = getString(R.string.home_screen_titles_programs),
+            titleLevel = 1
+        )
+
+        categories = CategoriesDelegate.CategoriesType(
+            ::clickIndicator,
+            ::clickIndicator,
+            ::clickIndicator,
+        )
     }
 
     private fun observeDataState() {
@@ -57,40 +75,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         dataList.clear()
         dataList.add(stats)
         dataList.add(goals)
-        dataList.add(
-            CategoryTitleDelegate.CategoryTitleType(
-            title = "ПРОГРАММА кек пек",
-            titleLevel = 1,
-        ))
+        dataList.add(programTitle)
         dataList.addAll(programs)
-        dataList.add(
-            CategoriesDelegate.CategoriesType(
-                ::clickIndicator,
-                ::clickIndicator,
-                ::clickIndicator,
-            ))
+        dataList.add(categories)
         dataList.addAll(groups)
         trainingsAdapter.setData(dataList)
     }
 
     private fun updateStats(statsData: HomeStats) {
-        Log.d("MyFilter", statsData.toString())
         stats = StatsDelegate.StatsType(
-            trainingsNumber = statsData.trainingNumber,
-            caloriesNumber = statsData.caloriesNumber,
-            minutesNumber = statsData.trainingsMinutes,
+            stats = statsData,
             onStatsClicked = ::clickIndicator,
         )
         updateList()
     }
 
     private fun updateGoals(goalsData: Goals) {
-        Log.d("MyFilter", goalsData.toString() )
         goals = GoalsDelegate.GoalsType(
-            goalsDone = goalsData.goalsDone,
-            goalsWanted = goalsData.goalsWanted,
-            currentWeek = goalsData.currentWeak,
-            currentDay = goalsData.currentDayNumber,
+            goals = goalsData,
             onGoalsEdit = ::clickIndicator,
             onGoalsClicked = ::clickIndicator,
         )
@@ -98,21 +100,32 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun updatePrograms(programsData: List<ProgramSevenFour>) {
-        Log.d("MyFilter", programsData.toString())
         programs.clear()
-        //TODO добавлять программы в цикле
+        programsData.forEach {
+            programs.add(
+                ProgramsDelegate.ProgramsType(
+                    fullBodyProgramName =  it.programName,
+                    downBodyProgramName = it.programName,
+                    onBeginClicked = ::clickIndicator
+            ))
+        }
         updateList()
     }
 
     private fun updateGroups(groupsData: List<MuscleGroup>) {
-        Log.d("MyFilter", groupsData.toString())
-        programs.clear()
-        //TODO добавлять программы по группам мышц в цикле
+        groups.clear()
+        groupsData.forEach {
+            groups.add(
+                GroupDelegate.GroupType(
+                group = it,
+                onGroupClicked = ::clickIndicator
+            ))
+        }
         updateList()
     }
 
     private fun clickIndicator() {
-        Toast.makeText(activity, "Clicked", Toast.LENGTH_LONG).show()
+        Toast.makeText(activity, "Clicked", Toast.LENGTH_SHORT).show()
     }
 
     private fun getDelegates() = listOf(

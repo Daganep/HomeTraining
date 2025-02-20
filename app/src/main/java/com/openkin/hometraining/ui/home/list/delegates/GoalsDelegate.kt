@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.openkin.hometraining.R
 import com.openkin.hometraining.createBinding
 import com.openkin.hometraining.databinding.ItemTrainingsGoalBinding
+import com.openkin.hometraining.domain.model.Goals
 import com.openkin.hometraining.ui.home.list.TrainingsAdapterType
 import com.openkin.hometraining.ui.home.list.TrainingsDelegate
 import com.openkin.hometraining.ui.home.list.TrainingsViewHolder
@@ -27,9 +28,9 @@ internal class GoalsDelegate: TrainingsDelegate<ItemTrainingsGoalBinding, GoalsD
         override fun areItemsTheSame(oldItem: GoalsType, newItem: GoalsType) = true
 
         override fun areContentsTheSame(oldItem: GoalsType, newItem: GoalsType) =
-            oldItem.goalsDone == newItem.goalsDone
-            && oldItem.goalsWanted == newItem.goalsWanted
-            && oldItem.currentDay == newItem.currentDay
+            oldItem.goals.goalsDone == newItem.goals.goalsDone
+            && oldItem.goals.goalsWanted == newItem.goals.goalsWanted
+            && oldItem.goals.currentDayNumber == newItem.goals.currentDayNumber
     }
 
     inner class GoalsViewHolder(
@@ -37,8 +38,8 @@ internal class GoalsDelegate: TrainingsDelegate<ItemTrainingsGoalBinding, GoalsD
     ) : TrainingsViewHolder<ItemTrainingsGoalBinding, GoalsType>(binding) {
         override fun onBind(item: GoalsType) {
             with(binding) {
-                goalsDoneNumber.text = item.goalsDone.toString()
-                goalsWantedNumber.text = item.goalsWanted.toString()
+                goalsDoneNumber.text = item.goals.goalsDone.toString()
+                goalsWantedNumber.text = item.goals.goalsWanted.toString()
                 //TODO добавить вставку строки из календаря
                 editGoals.setOnClickListener { item.onGoalsEdit?.invoke() }
                 root.setOnClickListener { item.onGoalsClicked?.invoke() }
@@ -47,10 +48,7 @@ internal class GoalsDelegate: TrainingsDelegate<ItemTrainingsGoalBinding, GoalsD
     }
 
     data class GoalsType(
-        var goalsDone: Int = 0,
-        var goalsWanted: Int = 5,
-        val currentWeek: List<String>,
-        val currentDay: Int,
+        val goals: Goals = Goals(0, 0, listOf(), 0),
         val onGoalsEdit: (() -> Unit)? = null,
         val onGoalsClicked: (() -> Unit)? = null,
     ) : TrainingsAdapterType

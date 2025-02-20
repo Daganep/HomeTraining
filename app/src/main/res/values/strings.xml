@@ -9,4 +9,5 @@
 
     <string name="content_description_training_program">Изображение программы тренировок</string>
     <string name="content_description_training_level">Уровень сложности программы</string>
+    <string name="home_screen_titles_programs">ПРОГРАММЫ 7х4</string>
 </resources>

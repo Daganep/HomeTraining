@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.DiffUtil
 import com.openkin.hometraining.R
 import com.openkin.hometraining.createBinding
 import com.openkin.hometraining.databinding.ItemTrainingsGroupBinding
+import com.openkin.hometraining.domain.model.MuscleGroup
+import com.openkin.hometraining.domain.model.TrainingLevel
 import com.openkin.hometraining.ui.home.list.TrainingsAdapterType
 import com.openkin.hometraining.ui.home.list.TrainingsDelegate
 import com.openkin.hometraining.ui.home.list.TrainingsViewHolder
@@ -26,13 +28,13 @@ internal class GroupDelegate : TrainingsDelegate<ItemTrainingsGroupBinding,
     private val diffUtil = object: DiffUtil.ItemCallback<GroupType>() {
 
         override fun areItemsTheSame(oldItem: GroupType, newItem: GroupType) =
-            oldItem.programName == newItem.programName
+            oldItem.group.groupName == newItem.group.groupName
 
         override fun areContentsTheSame(oldItem: GroupType, newItem: GroupType) =
-            oldItem.programLevel == newItem.programLevel
-                && oldItem.lastDate == newItem.lastDate
-                && oldItem.programDescription == newItem.programDescription
-                && oldItem.programImage == newItem.programImage
+            oldItem.group.level == newItem.group.level
+                && oldItem.group.lastDate == newItem.group.lastDate
+                && oldItem.group.description == newItem.group.description
+                && oldItem.group.groupImage == newItem.group.groupImage
     }
 
     inner class GroupViewHolder(
@@ -40,9 +42,9 @@ internal class GroupDelegate : TrainingsDelegate<ItemTrainingsGroupBinding,
     ) : TrainingsViewHolder<ItemTrainingsGroupBinding, GroupType>(binding) {
         override fun onBind(item: GroupType) {
             with(binding) {
-                programName.text = item.programName
-                programDescription.text = item.programDescription
-                lastTrainingDate.text = item.lastDate
+                programName.text = item.group.groupName
+                programDescription.text = item.group.description
+                lastTrainingDate.text = item.group.lastDate
                 //TODO реализовать установку уровня сложности
                 //TODO реализовать подстановку картинку программы
                 root.setOnClickListener { item.onGroupClicked?.invoke() }
@@ -51,11 +53,13 @@ internal class GroupDelegate : TrainingsDelegate<ItemTrainingsGroupBinding,
     }
 
     data class GroupType(
-        val programLevel: Int,
-        val programName: String,
-        val programDescription: String,
-        val lastDate: String,
-        val programImage: String,
+        val group: MuscleGroup = MuscleGroup(
+            groupName = "",
+            description = "",
+            lastDate = "",
+            level = TrainingLevel.BEGINNER,
+            groupImage = "",
+        ),
         val onGroupClicked: (() -> Unit)? = null
     ) : TrainingsAdapterType
 }
