@@ -1,7 +1,10 @@
 package com.openkin.hometraining.ui.home.list.delegates
 
+import android.net.Uri
+import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import coil.load
 import com.openkin.hometraining.R
 import com.openkin.hometraining.createBinding
 import com.openkin.hometraining.databinding.ItemTrainingsGroupBinding
@@ -46,7 +49,8 @@ internal class GroupDelegate : TrainingsDelegate<ItemTrainingsGroupBinding,
                 programDescription.text = item.group.description
                 lastTrainingDate.text = item.group.lastDate
                 //TODO реализовать установку уровня сложности
-                //TODO реализовать подстановку картинку программы
+                val uri = Uri.parse(item.group.groupImage)
+                binding.programImage.load(uri)
                 root.setOnClickListener { item.onGroupClicked?.invoke() }
             }
         }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HomeTraining</string>
+    <string name="app_name">Тренировки дома</string>
     <string name="navigation_label_trainings">Тренировки</string>
     <string name="navigation_label_search">Поиск</string>
     <string name="navigation_label_record">Отчет</string>

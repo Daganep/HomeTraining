@@ -2,7 +2,6 @@ package com.openkin.hometraining
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import com.openkin.hometraining.databinding.ActivityMainBinding
 import com.openkin.hometraining.ui.home.HomeFragment
 import com.openkin.hometraining.ui.record.RecordFragment
