@@ -14,4 +14,5 @@
     <color name="gray_dark">#FFDBDBDB</color>
 
     <color name="inactive_navigation_button">#646464</color>
+    <color name="no_focus_icon">#979393</color>
 </resources>

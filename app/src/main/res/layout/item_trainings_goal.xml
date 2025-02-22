@@ -8,16 +8,15 @@
     android:background="@drawable/rounded_background_10"
     android:layout_marginTop="16dp"
     android:layout_marginHorizontal="@dimen/default_horizontal_margin"
-    android:paddingVertical="8dp"
-    android:paddingHorizontal="@dimen/default_horizontal_padding">
+    android:padding="@dimen/default_horizontal_padding">
 
     <TextView
         android:id="@+id/goals_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textStyle="bold"
-        android:text="Цели на неделю"
+        android:text="@string/content_description_weak_goals"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -25,8 +24,9 @@
         android:id="@+id/edit_goals"
         android:layout_width="12dp"
         android:layout_height="12dp"
-        android:src="@drawable/icon_settings"
-        android:contentDescription="Редактировать цели"
+        android:src="@drawable/icon_edit"
+        android:contentDescription="@string/content_description_edit_text"
+        app:tint="@color/no_focus_icon"
         app:layout_constraintTop_toTopOf="@id/goals_wanted_number"
         app:layout_constraintBottom_toBottomOf="@id/goals_wanted_number"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -35,33 +35,73 @@
         android:id="@+id/goals_wanted_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/edit_goals"
-        tools:text="/5"/>
+        tools:text="5"/>
+
+    <TextView
+        android:id="@+id/goals_number_divider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_goals_number_divider"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/goals_wanted_number"/>
 
     <TextView
         android:id="@+id/goals_done_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:textSize="22sp"
         android:textStyle="bold"
+        android:textColor="@color/blue_dark"
         app:layout_constraintBottom_toBottomOf="@id/goals_wanted_number"
-        app:layout_constraintEnd_toStartOf="@id/goals_wanted_number"
+        app:layout_constraintEnd_toStartOf="@id/goals_number_divider"
         tools:text="0"/>
 
     <TextView
-        android:id="@+id/days"
+        android:id="@+id/days_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
+        app:layout_constrainedWidth="true"
+        android:maxLines="1"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:text="10 11 12 13 14 15 16"
+        android:text="10\t\t11\t\t12\t\t"
         app:layout_constraintTop_toBottomOf="@id/goals_label"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/days_center"
+        app:layout_constraintHorizontal_chainStyle="packed"/>
+
+    <TextView
+        android:id="@+id/days_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        app:layout_constrainedWidth="true"
+        android:maxLines="1"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="13\t\t"
+        app:layout_constraintTop_toBottomOf="@id/goals_label"
+        app:layout_constraintStart_toEndOf="@id/days_start"
+        app:layout_constraintEnd_toStartOf="@id/days_end"/>
+
+    <TextView
+        android:id="@+id/days_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        app:layout_constrainedWidth="true"
+        android:maxLines="1"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="14\t\t15\t\t16"
+        app:layout_constraintTop_toBottomOf="@id/goals_label"
+        app:layout_constraintStart_toEndOf="@id/days_center"
         app:layout_constraintEnd_toEndOf="parent"/>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

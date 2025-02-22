@@ -49,7 +49,7 @@ internal class GroupDelegate : TrainingsDelegate<ItemTrainingsGroupBinding,
                 programDescription.text = item.group.description
                 lastTrainingDate.text = item.group.lastDate
                 //TODO реализовать установку уровня сложности
-                val uri = Uri.parse(item.group.groupImage)
+                val uri = Uri.parse(item.group.groupImage) //TODO присылать готовый Uri, а не парсить здесь
                 binding.programImage.load(uri)
                 root.setOnClickListener { item.onGroupClicked?.invoke() }
             }
