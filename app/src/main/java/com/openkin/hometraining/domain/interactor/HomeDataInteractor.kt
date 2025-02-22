@@ -6,15 +6,18 @@ import com.openkin.hometraining.domain.model.MuscleGroup
 import com.openkin.hometraining.domain.model.ProgramSevenFour
 import com.openkin.hometraining.domain.model.TrainingLevel
 import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 
 class HomeDataInteractor : IHomeDataInteractor {
 
     override fun getStats() : Single<HomeStats> {
         return Single.just(HomeStats(32, 6808,303))
+            .subscribeOn(Schedulers.io())
     }
 
     override fun getGoals() : Single<Goals> {
         return Single.just(Goals(5, 0, listOf(), 3))
+            .subscribeOn(Schedulers.io())
     }
 
     override fun getPrograms() : Single<List<ProgramSevenFour>> {
@@ -26,6 +29,7 @@ class HomeDataInteractor : IHomeDataInteractor {
                 "",
                 "",)
         ))
+            .subscribeOn(Schedulers.io())
     }
 
     override fun getMuscleGroups() : Single<List<MuscleGroup>> {
@@ -73,5 +77,6 @@ class HomeDataInteractor : IHomeDataInteractor {
                 "",
             ),
         ))
+            .subscribeOn(Schedulers.io())
     }
 }

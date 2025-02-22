@@ -7,7 +7,11 @@
 
     <string name="screen_title_trainings">Тренировки дома</string>
 
+    <string name="home_screen_titles_programs">ПРОГРАММЫ 7х4</string>
+    <string name="home_goals_number_divider">/</string>
+
     <string name="content_description_training_program">Изображение программы тренировок</string>
     <string name="content_description_training_level">Уровень сложности программы</string>
-    <string name="home_screen_titles_programs">ПРОГРАММЫ 7х4</string>
+    <string name="content_description_edit_text">Редактировать цели</string>
+    <string name="content_description_weak_goals">Цели на неделю</string>
 </resources>

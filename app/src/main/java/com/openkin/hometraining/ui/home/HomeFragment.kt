@@ -1,8 +1,5 @@
 package com.openkin.hometraining.ui.home
 
-import android.graphics.Bitmap
-import android.media.Image
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
