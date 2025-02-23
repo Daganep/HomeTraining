@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.openkin.hometraining.ui.home.HomeScreenState.*
 import com.openkin.hometraining.BaseFragment
@@ -14,6 +15,7 @@ import com.openkin.hometraining.domain.model.Goals
 import com.openkin.hometraining.domain.model.HomeStats
 import com.openkin.hometraining.domain.model.MuscleGroup
 import com.openkin.hometraining.domain.model.ProgramSevenFour
+import com.openkin.hometraining.ui.home.list.ITabListener
 import com.openkin.hometraining.ui.home.list.TrainingsAdapterType
 import com.openkin.hometraining.ui.home.list.delegates.CategoriesDelegate
 import com.openkin.hometraining.ui.home.list.delegates.CategoryTitleDelegate
@@ -48,16 +50,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         binding?.homeCategoryTitle?.categoryTitle?.text = getString(R.string.home_screen_titles_programs)
         setTabClickListener()
-//        programTitle = CategoryTitleDelegate.CategoryTitleType(
-//            title = getString(R.string.home_screen_titles_programs),
-//            titleLevel = 1
-//        )
-
-//        categories = CategoriesDelegate.CategoriesType(
-//            ::clickIndicator,
-//            ::clickIndicator,
-//            ::clickIndicator,
-//        )
     }
 
     private fun observeDataState() {
@@ -74,17 +66,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun setTabClickListener() {
-        binding?.homeTrainingsCategories?.root?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        binding?.homeTrainingsCategories?.root?.addOnTabSelectedListener(object : ITabListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                clickIndicator(" ${tab?.position}")
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
+                when(tab?.position) {
+                    0 -> scrollToPosition(0)
+                    1 -> scrollToPosition(2)
+                    2 -> scrollToPosition(4)
+                }
             }
         })
     }
@@ -107,11 +95,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             it.minutesNumber.text = statsData.trainingsMinutes.toString()
             it.root.setOnClickListener { clickIndicator() }
         }
-//        stats = StatsDelegate.StatsType(
-//            stats = statsData,
-//            onStatsClicked = ::clickIndicator,
-//        )
-//        updateList()
     }
 
     private fun updateGoals(goalsData: Goals) {
@@ -122,12 +105,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             it.editGoals.setOnClickListener { clickIndicator() }
             it.root.setOnClickListener { clickIndicator() }
         }
-//        goals = GoalsDelegate.GoalsType(
-//            goals = goalsData,
-//            onGoalsEdit = ::clickIndicator,
-//            onGoalsClicked = ::clickIndicator,
-//        )
-//        updateList()
     }
 
     private fun updatePrograms(programsData: List<ProgramSevenFour>) {
@@ -153,6 +130,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             ))
         }
         updateList()
+    }
+
+    private fun scrollToPosition(position: Int, offset: Int = 0) {
+        val layoutManager = binding?.homeScreenRecycler?.layoutManager as LinearLayoutManager
+        layoutManager.scrollToPositionWithOffset(position, offset)
+        binding?.mainAppbar?.setExpanded(false)
     }
 
     private fun clickIndicator(text: String = "") {
