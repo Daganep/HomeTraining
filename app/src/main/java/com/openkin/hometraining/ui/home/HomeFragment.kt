@@ -1,9 +1,11 @@
 package com.openkin.hometraining.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.google.android.material.tabs.TabLayout
 import com.openkin.hometraining.ui.home.HomeScreenState.*
 import com.openkin.hometraining.BaseFragment
 import com.openkin.hometraining.R
@@ -44,16 +46,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private fun initUi() {
         binding?.homeScreenRecycler?.adapter = trainingsAdapter
 
-        programTitle = CategoryTitleDelegate.CategoryTitleType(
-            title = getString(R.string.home_screen_titles_programs),
-            titleLevel = 1
-        )
+        binding?.homeCategoryTitle?.categoryTitle?.text = getString(R.string.home_screen_titles_programs)
+        setTabClickListener()
+//        programTitle = CategoryTitleDelegate.CategoryTitleType(
+//            title = getString(R.string.home_screen_titles_programs),
+//            titleLevel = 1
+//        )
 
-        categories = CategoriesDelegate.CategoriesType(
-            ::clickIndicator,
-            ::clickIndicator,
-            ::clickIndicator,
-        )
+//        categories = CategoriesDelegate.CategoriesType(
+//            ::clickIndicator,
+//            ::clickIndicator,
+//            ::clickIndicator,
+//        )
     }
 
     private fun observeDataState() {
@@ -69,45 +73,74 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
+    private fun setTabClickListener() {
+        binding?.homeTrainingsCategories?.root?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                clickIndicator(" ${tab?.position}")
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+        })
+    }
+
     private fun updateList() {
         dataList.clear()
-        dataList.add(stats)
-        dataList.add(goals)
-        dataList.add(programTitle)
-        dataList.addAll(programs)
-        dataList.add(categories)
+        //dataList.add(stats)
+        //dataList.add(goals)
+        //dataList.add(programTitle)
+        //dataList.addAll(programs)
+        //dataList.add(categories)
         dataList.addAll(groups)
         trainingsAdapter.setData(dataList)
     }
 
     private fun updateStats(statsData: HomeStats) {
-        stats = StatsDelegate.StatsType(
-            stats = statsData,
-            onStatsClicked = ::clickIndicator,
-        )
-        updateList()
+        binding?.homeStats?.let {
+            it.trainingsNumber.text = statsData.trainingNumber.toString()
+            it.caloriesNumber.text = statsData.caloriesNumber.toString()
+            it.minutesNumber.text = statsData.trainingsMinutes.toString()
+            it.root.setOnClickListener { clickIndicator() }
+        }
+//        stats = StatsDelegate.StatsType(
+//            stats = statsData,
+//            onStatsClicked = ::clickIndicator,
+//        )
+//        updateList()
     }
 
     private fun updateGoals(goalsData: Goals) {
-        goals = GoalsDelegate.GoalsType(
-            goals = goalsData,
-            onGoalsEdit = ::clickIndicator,
-            onGoalsClicked = ::clickIndicator,
-        )
-        updateList()
+        binding?.homeGoals?.let {
+            it.goalsDoneNumber.text = goalsData.goalsDone.toString()
+            it.goalsWantedNumber.text = goalsData.goalsWanted.toString()
+            //TODO добавить вставку строки из календаря
+            it.editGoals.setOnClickListener { clickIndicator() }
+            it.root.setOnClickListener { clickIndicator() }
+        }
+//        goals = GoalsDelegate.GoalsType(
+//            goals = goalsData,
+//            onGoalsEdit = ::clickIndicator,
+//            onGoalsClicked = ::clickIndicator,
+//        )
+//        updateList()
     }
 
     private fun updatePrograms(programsData: List<ProgramSevenFour>) {
-        programs.clear()
-        programsData.forEach {
-            programs.add(
-                ProgramsDelegate.ProgramsType(
-                    fullBodyProgramName =  it.programName,
-                    downBodyProgramName = it.programName,
-                    onBeginClicked = ::clickIndicator
-            ))
-        }
-        updateList()
+//        programs.clear()
+//        programsData.forEach {
+//            programs.add(
+//                ProgramsDelegate.ProgramsType(
+//                    fullBodyProgramName =  it.programName,
+//                    downBodyProgramName = it.programName,
+//                    onBeginClicked = ::clickIndicator
+//            ))
+//        }
+//        updateList()
     }
 
     private fun updateGroups(groupsData: List<MuscleGroup>) {
@@ -122,8 +155,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         updateList()
     }
 
-    private fun clickIndicator() {
-        Toast.makeText(activity, "Clicked", Toast.LENGTH_SHORT).show()
+    private fun clickIndicator(text: String = "") {
+        Toast.makeText(activity, "Clicked$text", Toast.LENGTH_SHORT).show()
     }
 
     private fun getDelegates() = listOf(

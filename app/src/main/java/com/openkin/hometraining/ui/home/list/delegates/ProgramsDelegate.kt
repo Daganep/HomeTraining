@@ -4,20 +4,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.openkin.hometraining.R
 import com.openkin.hometraining.createBinding
-import com.openkin.hometraining.databinding.ItemTrainingsProgrammsBinding
+import com.openkin.hometraining.databinding.ItemTrainingsProgramsBinding
 import com.openkin.hometraining.ui.home.list.TrainingsAdapterType
 import com.openkin.hometraining.ui.home.list.TrainingsDelegate
 import com.openkin.hometraining.ui.home.list.TrainingsViewHolder
 
-internal class ProgramsDelegate : TrainingsDelegate<ItemTrainingsProgrammsBinding,
+internal class ProgramsDelegate : TrainingsDelegate<ItemTrainingsProgramsBinding,
     ProgramsDelegate.ProgramsType> {
 
     override fun isRelative(item: TrainingsAdapterType) = item is ProgramsType
 
-    override fun getLayoutId() = R.layout.item_trainings_programms
+    override fun getLayoutId() = R.layout.item_trainings_programs
 
     override fun getViewHolder(parent: ViewGroup) =
-        ProgramsViewHolder(createBinding(parent, ItemTrainingsProgrammsBinding::inflate))
+        ProgramsViewHolder(createBinding(parent, ItemTrainingsProgramsBinding::inflate))
 
     override fun getDiffUtil() = diffUtil
 
@@ -28,8 +28,8 @@ internal class ProgramsDelegate : TrainingsDelegate<ItemTrainingsProgrammsBindin
     }
 
     inner class ProgramsViewHolder(
-        binding: ItemTrainingsProgrammsBinding
-    ) : TrainingsViewHolder<ItemTrainingsProgrammsBinding, ProgramsType>(binding) {
+        binding: ItemTrainingsProgramsBinding
+    ) : TrainingsViewHolder<ItemTrainingsProgramsBinding, ProgramsType>(binding) {
 
         override fun onBind(item: ProgramsType) {
             //реализовать заполнение программ 7x4
