@@ -16,7 +16,7 @@ class HomeDataInteractor : IHomeDataInteractor {
     }
 
     override fun getGoals() : Single<Goals> {
-        return Single.just(Goals(5, 0, listOf(), 3))
+        return Single.just(Goals(5, 0, listOf(24, 25, 26, 27, 28, 1, 2), 0))
             .subscribeOn(Schedulers.io())
     }
 

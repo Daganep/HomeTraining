@@ -62,46 +62,13 @@
         app:layout_constraintEnd_toStartOf="@id/goals_number_divider"
         tools:text="0"/>
 
-    <TextView
-        android:id="@+id/days_start"
-        android:layout_width="wrap_content"
+    <com.openkin.hometraining.ui.widgets.GoalsWeekView
+        android:id="@+id/current_week"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        app:layout_constrainedWidth="true"
-        android:maxLines="1"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:text="10\t\t11\t\t12\t\t"
-        app:layout_constraintTop_toBottomOf="@id/goals_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/days_center"
-        app:layout_constraintHorizontal_chainStyle="packed"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/goals_label"/>
 
-    <TextView
-        android:id="@+id/days_center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        app:layout_constrainedWidth="true"
-        android:maxLines="1"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:text="13\t\t"
-        app:layout_constraintTop_toBottomOf="@id/goals_label"
-        app:layout_constraintStart_toEndOf="@id/days_start"
-        app:layout_constraintEnd_toStartOf="@id/days_end"/>
-
-    <TextView
-        android:id="@+id/days_end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        app:layout_constrainedWidth="true"
-        android:maxLines="1"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:text="14\t\t15\t\t16"
-        app:layout_constraintTop_toBottomOf="@id/goals_label"
-        app:layout_constraintStart_toEndOf="@id/days_center"
-        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

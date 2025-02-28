@@ -3,7 +3,11 @@ package com.openkin.hometraining.ui.home
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
@@ -23,6 +27,7 @@ import com.openkin.hometraining.ui.home.list.delegates.GoalsDelegate
 import com.openkin.hometraining.ui.home.list.delegates.GroupDelegate
 import com.openkin.hometraining.ui.home.list.delegates.ProgramsDelegate
 import com.openkin.hometraining.ui.home.list.delegates.StatsDelegate
+import com.openkin.hometraining.ui.widgets.CurrentDayView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -79,11 +84,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun updateList() {
         dataList.clear()
-        //dataList.add(stats)
-        //dataList.add(goals)
-        //dataList.add(programTitle)
-        //dataList.addAll(programs)
-        //dataList.add(categories)
         dataList.addAll(groups)
         trainingsAdapter.setData(dataList)
     }
@@ -101,7 +101,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding?.homeGoals?.let {
             it.goalsDoneNumber.text = goalsData.goalsDone.toString()
             it.goalsWantedNumber.text = goalsData.goalsWanted.toString()
-            //TODO добавить вставку строки из календаря
+            setCurrentWeek(goalsData)
             it.editGoals.setOnClickListener { clickIndicator() }
             it.root.setOnClickListener { clickIndicator() }
         }
@@ -140,6 +140,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun clickIndicator(text: String = "") {
         Toast.makeText(activity, "Clicked$text", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setCurrentWeek(goalsData: Goals) {
+        val currentDay = goalsData.currentDayNumber.toString()
+        val currentDayView = CurrentDayView(requireContext())
+        currentDayView.setDayNumber(currentDay)
+        val factor = requireContext().resources.displayMetrics.density
+        val layoutParams = LinearLayout.LayoutParams((32*factor).toInt(), (32*factor).toInt())
+        layoutParams.setMargins(24, 0 ,0 ,0)
+        currentDayView.layoutParams = layoutParams
+        val days = "${goalsData.currentWeak[0]}${goalsData.currentWeak[1]}${goalsData.currentWeak[2]}${goalsData.currentWeak[3]}${25}${goalsData.currentWeak[3]}"
+        val startDaysTextView = TextView(requireContext())
+        startDaysTextView.text = days
+        startDaysTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 19f)
+        startDaysTextView.letterSpacing = 1f*factor
+        //binding?.homeGoals?.currentWeek?.addView(startDaysTextView)
+        //binding?.homeGoals?.currentWeek?.addView(currentDayView)
+        binding?.homeGoals?.currentWeek?.setGoalsData(goalsData)
     }
 
     private fun getDelegates() = listOf(
