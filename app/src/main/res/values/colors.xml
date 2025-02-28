@@ -12,7 +12,9 @@
     <color name="gray_light">#FFEDEDED</color>
     <color name="gray_medium">#FFE6E6E6</color>
     <color name="gray_dark">#FFDBDBDB</color>
+    <color name="gray_no_focus">#646464</color>
 
-    <color name="inactive_navigation_button">#646464</color>
-    <color name="no_focus_icon">#979393</color>
+    <color name="inactive_navigation_button">@color/gray_no_focus</color>
+    <color name="no_focus_icon">@color/gray_no_focus</color>
+    <color name="no_focus_text">@color/gray_no_focus</color>
 </resources>

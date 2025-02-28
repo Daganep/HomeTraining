@@ -14,4 +14,8 @@
     <string name="content_description_training_level">Уровень сложности программы</string>
     <string name="content_description_edit_text">Редактировать цели</string>
     <string name="content_description_weak_goals">Цели на неделю</string>
+
+    <string name="training_level_beginner">Новичок</string>
+    <string name="training_level_advanced">Продолжающий</string>
+    <string name="training_level_pro">Продвинутый</string>
 </resources>
