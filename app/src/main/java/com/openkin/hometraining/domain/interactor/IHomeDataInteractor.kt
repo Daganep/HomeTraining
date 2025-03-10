@@ -9,6 +9,6 @@ import io.reactivex.Single
 interface IHomeDataInteractor {
     fun getStats() : Single<HomeStats>
     fun getGoals() : Single<Goals>
-    fun getPrograms() : Single<List<ProgramSevenFour>>
-    fun getMuscleGroups() : Single<List<MuscleGroup>>
+    fun getProgramsSevenFour() : Single<List<ProgramSevenFour>>
+    fun getProgramsGroups() : Single<List<MuscleGroup>>
 }

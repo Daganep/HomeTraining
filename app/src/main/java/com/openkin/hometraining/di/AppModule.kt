@@ -10,7 +10,7 @@ import org.koin.dsl.module
 
 val appModule = module {
 
-    single<IHomeDataInteractor> { HomeDataInteractor() }
+    single<IHomeDataInteractor> { HomeDataInteractor(homeDataRepository = get()) }
 
     single<IHomeDataRepository> { HomeDataRepository() }
 

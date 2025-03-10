@@ -1,11 +1,9 @@
 package com.openkin.hometraining.ui.home
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -24,10 +22,11 @@ import com.openkin.hometraining.ui.home.list.TrainingsAdapterType
 import com.openkin.hometraining.ui.home.list.delegates.CategoriesDelegate
 import com.openkin.hometraining.ui.home.list.delegates.CategoryTitleDelegate
 import com.openkin.hometraining.ui.home.list.delegates.GoalsDelegate
-import com.openkin.hometraining.ui.home.list.delegates.GroupDelegate
+import com.openkin.hometraining.ui.home.list.delegates.ProgramGroupDelegate
 import com.openkin.hometraining.ui.home.list.delegates.ProgramsDelegate
 import com.openkin.hometraining.ui.home.list.delegates.StatsDelegate
 import com.openkin.hometraining.ui.widgets.CurrentDayView
+import com.openkin.hometraining.ui.widgets.SevenFourProgramView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -42,7 +41,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private lateinit var programTitle: CategoryTitleDelegate.CategoryTitleType
     private val programs = mutableListOf<ProgramsDelegate.ProgramsType>()
     private lateinit var categories: CategoriesDelegate.CategoriesType
-    private val groups = mutableListOf<GroupDelegate.GroupType>()
+    private val groups = mutableListOf<ProgramGroupDelegate.GroupType>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -62,8 +61,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             when(state) {
                 is StatsLoaded -> updateStats(state.statsData)
                 is GoalsLoaded -> updateGoals(state.goalsData)
-                is ProgramsLoaded -> updatePrograms(state.programsData)
-                is GroupsLoaded -> updateGroups(state.groupsData)
+                is ProgramsSevenFourLoaded -> updateProgramsSevenFour(state.programsData)
+                is ProgramsGroupsLoaded -> updateProgramsGroups(state.groupsData)
                 is LoadingState -> Log.d("MyFilter", "Loading in progress!")
                 is ErrorState -> Log.e("Errors", state.message)
             }
@@ -75,8 +74,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when(tab?.position) {
                     0 -> scrollToPosition(0)
-                    1 -> scrollToPosition(2)
-                    2 -> scrollToPosition(4)
+                    1 -> scrollToPosition(4)
+                    2 -> scrollToPosition(8)
                 }
             }
         })
@@ -107,24 +106,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    private fun updatePrograms(programsData: List<ProgramSevenFour>) {
-//        programs.clear()
-//        programsData.forEach {
-//            programs.add(
-//                ProgramsDelegate.ProgramsType(
-//                    fullBodyProgramName =  it.programName,
-//                    downBodyProgramName = it.programName,
-//                    onBeginClicked = ::clickIndicator
-//            ))
-//        }
-//        updateList()
+    private fun updateProgramsSevenFour(programsData: List<ProgramSevenFour>) {
+        programsData.forEach { program ->
+            val programView = SevenFourProgramView(requireContext())
+            programView.setData(program)
+            binding?.homeTrainingsPrograms?.sevenFourProgramsContainer?.addView(programView)
+        }
     }
 
-    private fun updateGroups(groupsData: List<MuscleGroup>) {
+    private fun updateProgramsGroups(groupsData: List<MuscleGroup>) {
         groups.clear()
         groupsData.forEach {
             groups.add(
-                GroupDelegate.GroupType(
+                ProgramGroupDelegate.GroupType(
                 group = it,
                 onGroupClicked = ::clickIndicator
             ))
@@ -132,7 +126,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         updateList()
     }
 
-    private fun scrollToPosition(position: Int, offset: Int = 0) {
+    private fun scrollToPosition(position: Int, offset: Int = 0) { //TODO сделать скролл с задержкой
         val layoutManager = binding?.homeScreenRecycler?.layoutManager as LinearLayoutManager
         layoutManager.scrollToPositionWithOffset(position, offset)
         binding?.mainAppbar?.setExpanded(false)
@@ -166,6 +160,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         CategoryTitleDelegate(),
         ProgramsDelegate(),
         CategoriesDelegate(),
-        GroupDelegate(),
+        ProgramGroupDelegate(),
     )
 }

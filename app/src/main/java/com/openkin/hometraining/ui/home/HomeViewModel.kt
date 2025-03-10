@@ -17,8 +17,8 @@ class HomeViewModel(private val homeDataInteractor: IHomeDataInteractor) : ViewM
         homeScreenState.value = HomeScreenState.LoadingState
         getStats()
         getGoals()
-        getPrograms()
-        getMuscleGroups()
+        getProgramsSevenFour()
+        getProgramsGroups()
     }
 
     private fun getStats() {
@@ -45,24 +45,24 @@ class HomeViewModel(private val homeDataInteractor: IHomeDataInteractor) : ViewM
         )
     }
 
-    private fun getPrograms() {
+    private fun getProgramsSevenFour() {
         subscriptions.add(
-            homeDataInteractor.getPrograms()
+            homeDataInteractor.getProgramsSevenFour()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ programs ->
-                    homeScreenState.value = HomeScreenState.ProgramsLoaded(programs)
+                    homeScreenState.value = HomeScreenState.ProgramsSevenFourLoaded(programs)
                 }, { throwable ->
                     homeScreenState.value = HomeScreenState.ErrorState(throwable.message ?: "")
                 })
         )
     }
 
-    private fun getMuscleGroups() {
+    private fun getProgramsGroups() {
         subscriptions.add(
-            homeDataInteractor.getMuscleGroups()
+            homeDataInteractor.getProgramsGroups()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ groups ->
-                    homeScreenState.value = HomeScreenState.GroupsLoaded(groups)
+                    homeScreenState.value = HomeScreenState.ProgramsGroupsLoaded(groups)
                 }, { throwable ->
                     homeScreenState.value = HomeScreenState.ErrorState(throwable.message ?: "")
                 })

@@ -1,7 +1,6 @@
 package com.openkin.hometraining.ui.home.list.delegates
 
 import android.net.Uri
-import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import coil.load
@@ -14,8 +13,8 @@ import com.openkin.hometraining.ui.home.list.TrainingsAdapterType
 import com.openkin.hometraining.ui.home.list.TrainingsDelegate
 import com.openkin.hometraining.ui.home.list.TrainingsViewHolder
 
-internal class GroupDelegate : TrainingsDelegate<ItemTrainingsGroupBinding,
-    GroupDelegate.GroupType> {
+internal class ProgramGroupDelegate : TrainingsDelegate<ItemTrainingsGroupBinding,
+    ProgramGroupDelegate.GroupType> {
 
     override fun isRelative(item: TrainingsAdapterType) = item is GroupType
 
@@ -48,11 +47,20 @@ internal class GroupDelegate : TrainingsDelegate<ItemTrainingsGroupBinding,
                 programName.text = item.group.groupName
                 programDescription.text = item.group.description
                 lastTrainingDate.text = item.group.lastDate
-                //TODO реализовать установку уровня сложности
+                programLevel.load(getProgramLevelUri(item.group.level)) //TODO присылать готовый Uri, а не парсить здесь
                 val uri = Uri.parse(item.group.groupImage) //TODO присылать готовый Uri, а не парсить здесь
                 binding.programImage.load(uri)
                 root.setOnClickListener { item.onGroupClicked?.invoke() }
             }
+        }
+
+        private fun getProgramLevelUri(level: TrainingLevel): Uri {
+            val programLevel: String = when(level) {
+                TrainingLevel.BEGINNER -> BEGINNER
+                TrainingLevel.CONTINUE -> CONTINUE
+                TrainingLevel.ADVANCED -> ADVANCED
+            }
+            return Uri.parse(BASE_LEVEL_URL + programLevel)
         }
     }
 
@@ -66,4 +74,11 @@ internal class GroupDelegate : TrainingsDelegate<ItemTrainingsGroupBinding,
         ),
         val onGroupClicked: (() -> Unit)? = null
     ) : TrainingsAdapterType
+
+    companion object {
+        private const val BASE_LEVEL_URL = "android.resource://com.openkin.hometraining/drawable/"
+        private const val BEGINNER = "image_program_level_beginner"
+        private const val CONTINUE = "image_program_level_continue"
+        private const val ADVANCED = "image_program_level_advanced"
+    }
 }

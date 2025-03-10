@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="338dp"
+    android:layout_height="270dp">
+
+    <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="fitXY"
+        android:contentDescription="@string/content_description_training_program"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:src="@drawable/image_program_full_7x4"/>
+
+    <TextView
+        android:id="@+id/progress_program_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constrainedWidth="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginEnd="140dp"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="всё тело\nпрограмма 7Х4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="всё тело\nпрограмма 7Х4"/>
+
+    <TextView
+        android:id="@+id/new_program_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constrainedWidth="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginEnd="140dp"
+        android:maxLines="3"
+        android:textAllCaps="true"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="Нижняя часть тела про"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Нижняя часть тела"/>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="100dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginStart="@dimen/margin_default"
+        style="@style/Widget.MaterialComponents.LinearProgressIndicator"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progress_program_name"
+        tools:progress="20"/>
+
+
+    <TextView
+        android:id="@+id/progress_program_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginStart="@dimen/margin_default"
+        android:maxLines="1"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:text="4% Закончить"
+        app:layout_constraintTop_toBottomOf="@id/progress"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="4% закончить"/>
+
+    <TextView
+        android:id="@+id/progress_program_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginTop="@dimen/margin_small"
+        android:maxLines="1"
+        android:textAllCaps="true"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="1-й день"
+        app:layout_constraintTop_toBottomOf="@id/progress_program_label"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="1-й день"/>
+
+    <TextView
+        android:id="@+id/new_program_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginVertical="@dimen/margin_default"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:text="Всего за 4 недели укрепите ноги, увеличьте силу нижней части тела и улучшите свою общую физическую подготовку"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/program_begin_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Всего за 4 недели укрепите ноги, увеличьте силу нижней части тела и улучшите свою общую физическую подготовку"/>
+
+    <View
+        android:id="@+id/program_begin_button"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_margin="@dimen/margin_default"
+        android:background="@drawable/rounded_background_10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/full_body_program_begin_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:maxLines="1"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/blue_dark"
+        android:text="Начать"
+        app:layout_constraintTop_toTopOf="@id/program_begin_button"
+        app:layout_constraintBottom_toBottomOf="@id/program_begin_button"
+        app:layout_constraintStart_toStartOf="@id/program_begin_button"
+        app:layout_constraintEnd_toEndOf="@id/program_begin_button"
+        tools:text="Начать"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

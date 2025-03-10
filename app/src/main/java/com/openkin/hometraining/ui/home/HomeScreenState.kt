@@ -11,9 +11,9 @@ sealed interface HomeScreenState {
 
     data class GoalsLoaded(val goalsData: Goals) : HomeScreenState
 
-    data class ProgramsLoaded(val programsData: List<ProgramSevenFour>) : HomeScreenState
+    data class ProgramsSevenFourLoaded(val programsData: List<ProgramSevenFour>) : HomeScreenState
 
-    data class GroupsLoaded(val groupsData: List<MuscleGroup>) : HomeScreenState
+    data class ProgramsGroupsLoaded(val groupsData: List<MuscleGroup>) : HomeScreenState
 
     data object LoadingState : HomeScreenState
 

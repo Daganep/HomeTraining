@@ -8,4 +8,5 @@
     <dimen name="margin_large">24dp</dimen>
 
     <dimen name="default_horizontal_padding">16dp</dimen>
+    <dimen name="padding_medium">8dp</dimen>
 </resources>
