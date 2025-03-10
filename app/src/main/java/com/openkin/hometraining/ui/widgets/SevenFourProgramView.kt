@@ -1,20 +1,13 @@
 package com.openkin.hometraining.ui.widgets
 
 import android.content.Context
-import android.net.Uri
 import android.util.AttributeSet
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.annotation.StyleRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import coil.load
 import com.openkin.hometraining.R
 import com.openkin.hometraining.databinding.ItemSevenFourProgramBinding
-import com.openkin.hometraining.databinding.ItemTrainingsGroupBinding
-import com.openkin.hometraining.databinding.ItemTrainingsProgramsBinding
 import com.openkin.hometraining.domain.model.ProgramSevenFour
 
 class SevenFourProgramView @JvmOverloads constructor(
