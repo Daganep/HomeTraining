@@ -16,4 +16,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.openkin.hometraining.ui.widgets.NavigationButtonView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:button_text="Кеки пеки"
+        app:button_icon="@drawable/icon_record"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

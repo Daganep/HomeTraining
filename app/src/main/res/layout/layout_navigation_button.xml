@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:gravity="center_vertical|center_horizontal"
+    android:background="@drawable/nav_button_ripple_effect">
+
+    <ImageView
+        android:id="@+id/button_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="@string/navigation_label_trainings"
+        android:src="@drawable/icon_trainings"
+        app:tint="@color/inactive_navigation_button"/>
+
+    <TextView
+        android:id="@+id/button_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/navigation_label_trainings"
+        android:textSize="11sp"
+        android:textColor="@color/inactive_navigation_button"/>
+
+</LinearLayout>

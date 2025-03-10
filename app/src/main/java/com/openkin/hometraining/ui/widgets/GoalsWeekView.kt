@@ -22,8 +22,8 @@ class GoalsWeekView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0,
-    defStyleRes: StyleRes? = null,
-) : ConstraintLayout(context, attributeSet, defStyleAttr) {
+    defStyleRes: Int = 0,
+) : ConstraintLayout(context, attributeSet, defStyleAttr, defStyleRes) {
 
     private val factor = context.resources.displayMetrics.density
     private var currentDayView = CurrentDayView(context)

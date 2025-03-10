@@ -22,24 +22,36 @@ class MainActivity : AppCompatActivity() {
             .commit()
         //binding.bottomNavigation.isVisible = false
         binding.bottomNavTrainings.setOnClickListener {
+            binding.bottomNavSearch.setInactive()
+            binding.bottomNavRecord.setInactive()
+            binding.bottomNavSettings.setInactive()
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_container, HomeFragment())
                 .commit()
         }
         binding.bottomNavSearch.setOnClickListener {
+            binding.bottomNavTrainings.setInactive()
+            binding.bottomNavRecord.setInactive()
+            binding.bottomNavSettings.setInactive()
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_container, SearchFragment())
                 .commit()
         }
         binding.bottomNavRecord.setOnClickListener {
+            binding.bottomNavSearch.setInactive()
+            binding.bottomNavTrainings.setInactive()
+            binding.bottomNavSettings.setInactive()
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_container, RecordFragment())
                 .commit()
         }
         binding.bottomNavSettings.setOnClickListener {
+            binding.bottomNavSearch.setInactive()
+            binding.bottomNavRecord.setInactive()
+            binding.bottomNavTrainings.setInactive()
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_container, SettingsFragment())

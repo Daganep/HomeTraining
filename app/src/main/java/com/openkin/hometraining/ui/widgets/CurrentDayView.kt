@@ -7,14 +7,13 @@ import android.graphics.Rect
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.View
-import androidx.annotation.StyleRes
 import com.openkin.hometraining.R
 
 class CurrentDayView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0,
-    defStyleRes: StyleRes? = null,
+    defStyleRes: Int = 0,
 ) : View(context, attributeSet) {
 
     private var canvas: Canvas? = null
@@ -79,7 +78,7 @@ class CurrentDayView @JvmOverloads constructor(
         paintDayNumber.style = Paint.Style.FILL
         paintDayNumber.color = context.resources.getColor(R.color.blue_dark, null)
         paintDayNumber.textSize = NUMBER_TEXT_SIZE
-        val type: Typeface = Typeface.createFromAsset( context.assets,"font/open_sans_semi_bold.ttf")
+        val type: Typeface = Typeface.createFromAsset(context.assets,"font/open_sans_semi_bold.ttf")
         //paintDayNumber.typeface = Typeface.create(type, Typeface.BOLD)
         paintDayNumber.typeface = type
     }

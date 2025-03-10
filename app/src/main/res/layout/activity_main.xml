@@ -50,116 +50,56 @@
             bottom_nav_settings
         "/>
 
-    <LinearLayout
+    <com.openkin.hometraining.ui.widgets.NavigationButtonView
         android:id="@+id/bottom_nav_trainings"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginStart="@dimen/default_horizontal_margin"
-        android:orientation="vertical"
         android:gravity="center"
+        android:layout_marginStart="@dimen/default_horizontal_margin"
+        android:layout_marginEnd="@dimen/default_horizontal_margin"
+        app:button_icon="@drawable/icon_trainings"
+        app:button_text="@string/navigation_label_trainings"
+        app:active="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/bottom_nav_search"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        tools:ignore="UseCompoundDrawables">
+        app:layout_constraintHorizontal_chainStyle="packed"/>
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:contentDescription="@string/navigation_label_trainings"
-            android:src="@drawable/icon_trainings"
-            app:tint="@color/inactive_navigation_button"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/navigation_label_trainings"
-            android:textSize="11sp"
-            android:textColor="@color/inactive_navigation_button"/>
-    </LinearLayout>
-
-    <LinearLayout
+    <com.openkin.hometraining.ui.widgets.NavigationButtonView
         android:id="@+id/bottom_nav_search"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:orientation="vertical"
         android:gravity="center"
+        android:layout_marginEnd="@dimen/default_horizontal_margin"
+        app:button_icon="@drawable/icon_search"
+        app:button_text="@string/navigation_label_search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/bottom_nav_trainings"
-        app:layout_constraintEnd_toStartOf="@id/bottom_nav_record"
-        tools:ignore="UseCompoundDrawables">
+        app:layout_constraintEnd_toStartOf="@id/bottom_nav_record"/>
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:contentDescription="@string/navigation_label_search"
-            android:src="@drawable/icon_search"
-            app:tint="@color/inactive_navigation_button"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/navigation_label_search"
-            android:textSize="11sp"
-            android:textColor="@color/inactive_navigation_button"/>
-    </LinearLayout>
-
-    <LinearLayout
+    <com.openkin.hometraining.ui.widgets.NavigationButtonView
         android:id="@+id/bottom_nav_record"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:orientation="vertical"
         android:gravity="center"
+        android:layout_marginEnd="@dimen/default_horizontal_margin"
+        app:button_icon="@drawable/icon_record"
+        app:button_text="@string/navigation_label_record"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/bottom_nav_search"
-        app:layout_constraintEnd_toStartOf="@id/bottom_nav_settings"
-        tools:ignore="UseCompoundDrawables">
+        app:layout_constraintEnd_toStartOf="@id/bottom_nav_settings"/>
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:contentDescription="@string/navigation_label_record"
-            android:src="@drawable/icon_record"
-            app:tint="@color/inactive_navigation_button"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/navigation_label_record"
-            android:textSize="11sp"
-            android:textColor="@color/inactive_navigation_button"/>
-    </LinearLayout>
-
-    <LinearLayout
+    <com.openkin.hometraining.ui.widgets.NavigationButtonView
         android:id="@+id/bottom_nav_settings"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="@dimen/default_horizontal_margin"
-        android:orientation="vertical"
         android:gravity="center"
+        android:layout_marginEnd="@dimen/default_horizontal_margin"
+        app:button_icon="@drawable/icon_settings"
+        app:button_text="@string/navigation_label_settings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/bottom_nav_record"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="UseCompoundDrawables">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:contentDescription="@string/navigation_label_settings"
-            android:src="@drawable/icon_settings"
-            app:tint="@color/inactive_navigation_button"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/navigation_label_settings"
-            android:textSize="11sp"
-            android:textColor="@color/inactive_navigation_button"/>
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/bottom_navigation"
@@ -171,6 +111,5 @@
             bottom_nav_record,
             bottom_nav_settings
         "/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
