@@ -14,8 +14,18 @@
     <string name="content_description_training_level">Уровень сложности программы</string>
     <string name="content_description_edit_text">Редактировать цели</string>
     <string name="content_description_weak_goals">Цели на неделю</string>
+    <string name="content_description_training_number">Количество тренировок</string>
 
     <string name="training_level_beginner">Новичок</string>
     <string name="training_level_advanced">Продолжающий</string>
     <string name="training_level_pro">Продвинутый</string>
+
+    <string name="stats_calories">ккал</string>
+    <string name="stats_minutes">минут</string>
+    <plurals name="stats_trainings">
+        <item quantity="zero">тренировок</item>
+        <item quantity="one">тренировка</item>
+        <item quantity="few">тренировки</item>
+        <item quantity="many">тренировок</item>
+    </plurals>
 </resources>

@@ -12,18 +12,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/default_horizontal_margin"
         android:textAllCaps="true"
-        android:text="тренировки"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/calories_label"
         app:layout_constraintTop_toBottomOf="@id/trainings_number"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        tools:text="тренировки"/>
 
     <TextView
         android:id="@+id/calories_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAllCaps="true"
-        android:text="ккал"
+        android:text="@string/stats_calories"
         app:layout_constraintStart_toEndOf="@id/trainings_label"
         app:layout_constraintEnd_toStartOf="@id/minutes_label"
         app:layout_constraintTop_toBottomOf="@id/calories_number"/>
@@ -34,42 +34,82 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="42dp"
         android:textAllCaps="true"
-        android:text="минут"
+        android:text="@string/stats_minutes"
         app:layout_constraintStart_toEndOf="@id/calories_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/minutes_number"/>
+
+    <ImageView
+        android:id="@+id/trainings_stats_icon"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:contentDescription="@string/content_description_training_number"
+        android:src="@drawable/icon_trainings_done"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/trainings_label"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@id/trainings_label"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/trainings_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/trainings_label"
         app:layout_constraintEnd_toEndOf="@id/trainings_label"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/trainings_stats_icon"
         tools:text="32"/>
+
+    <ImageView
+        android:id="@+id/calories_stats_icon"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:contentDescription="@string/content_description_training_number"
+        android:src="@drawable/icon_calories_burned"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/calories_label"
+        app:layout_constraintEnd_toEndOf="@id/calories_label"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible"/>
 
     <TextView
         android:id="@+id/calories_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/calories_label"
         app:layout_constraintEnd_toEndOf="@id/calories_label"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calories_stats_icon"
         tools:text="6808"/>
+
+    <ImageView
+        android:id="@+id/minutes_stats_icon"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:contentDescription="@string/content_description_training_number"
+        android:src="@drawable/icon_trainings_minutes"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/minutes_label"
+        app:layout_constraintEnd_toEndOf="@id/minutes_label"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible"/>
 
     <TextView
         android:id="@+id/minutes_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/minutes_label"
         app:layout_constraintEnd_toEndOf="@id/minutes_label"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/minutes_stats_icon"
         tools:text="393"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
