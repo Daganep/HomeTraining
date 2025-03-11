@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavSearch.setInactive()
             binding.bottomNavRecord.setInactive()
             binding.bottomNavSettings.setInactive()
+            binding.screenTitle.text = getString(R.string.navigation_label_trainings)
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_container, HomeFragment())
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavTrainings.setInactive()
             binding.bottomNavRecord.setInactive()
             binding.bottomNavSettings.setInactive()
+            binding.screenTitle.text = getString(R.string.navigation_label_search)
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_container, SearchFragment())
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavSearch.setInactive()
             binding.bottomNavTrainings.setInactive()
             binding.bottomNavSettings.setInactive()
+            binding.screenTitle.text = getString(R.string.navigation_label_record)
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_container, RecordFragment())
@@ -52,6 +55,7 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavSearch.setInactive()
             binding.bottomNavRecord.setInactive()
             binding.bottomNavTrainings.setInactive()
+            binding.screenTitle.text = getString(R.string.navigation_label_settings)
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_container, SettingsFragment())
