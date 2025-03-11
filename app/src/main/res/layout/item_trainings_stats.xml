@@ -41,10 +41,10 @@
 
     <ImageView
         android:id="@+id/trainings_stats_icon"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:contentDescription="@string/content_description_training_number"
-        android:src="@drawable/icon_trainings_done"
+        android:src="@drawable/image_trainings_done"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@id/trainings_label"
         app:layout_constraintHorizontal_bias="0.506"
@@ -66,10 +66,10 @@
 
     <ImageView
         android:id="@+id/calories_stats_icon"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:contentDescription="@string/content_description_training_number"
-        android:src="@drawable/icon_calories_burned"
+        android:src="@drawable/image_calories_burned"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="@id/calories_label"
         app:layout_constraintEnd_toEndOf="@id/calories_label"
@@ -90,10 +90,10 @@
 
     <ImageView
         android:id="@+id/minutes_stats_icon"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:contentDescription="@string/content_description_training_number"
-        android:src="@drawable/icon_trainings_minutes"
+        android:src="@drawable/image_trainings_minutes"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="@id/minutes_label"
         app:layout_constraintEnd_toEndOf="@id/minutes_label"

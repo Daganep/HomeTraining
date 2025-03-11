@@ -89,7 +89,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun updateStats(statsData: HomeStats) {
         binding?.homeStats?.let {
-            it.trainingsNumber.text = statsData.trainingNumber.toString()
+            val trainingNumber = statsData.trainingNumber
+            it.trainingsNumber.text = trainingNumber.toString()
+            it.trainingsLabel.text = resources.getQuantityString(R.plurals.stats_trainings, statsData.trainingNumber)
             it.caloriesNumber.text = statsData.caloriesNumber.toString()
             it.minutesNumber.text = statsData.trainingsMinutes.toString()
             it.root.setOnClickListener { clickIndicator() }
